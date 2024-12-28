@@ -5,10 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.examenfinal.dtos.borrarNotaDTO;
 import pe.edu.upc.examenfinal.dtos.notasDTO;
-import pe.edu.upc.examenfinal.entities.Users;
 import pe.edu.upc.examenfinal.servicesinterfaces.notasService;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @RestController
