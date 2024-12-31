@@ -83,4 +83,30 @@ public class notasService {
         }
         return listNotas;
     }
+
+    public notasDTO actualizarTitulo(Long Id, String titulo) {
+        ModelMapper modelMapper = new ModelMapper();
+        Optional<notas> Titulo = notasRepository.findById(Id);
+
+        if (Titulo.isPresent()) {
+            notas Notas = Titulo.get();
+            Notas.setTitulo(titulo);
+            notas updatedTitulo = notasRepository.save(Notas);
+            return modelMapper.map(updatedTitulo, notasDTO.class);
+        }
+        throw new IllegalArgumentException("Usuario no encontrado");
+    }
+
+    public notasDTO actualizarDescripcipon(Long Id, String descripcion) {
+        ModelMapper modelMapper = new ModelMapper();
+        Optional<notas> Descripcion = notasRepository.findById(Id);
+
+        if (Descripcion.isPresent()) {
+            notas Notas = Descripcion.get();
+            Notas.setDescripcion(descripcion);
+            notas updatedDescripcion = notasRepository.save(Notas);
+            return modelMapper.map(updatedDescripcion, notasDTO.class);
+        }
+        throw new IllegalArgumentException("Usuario no encontrado");
+    }
 }

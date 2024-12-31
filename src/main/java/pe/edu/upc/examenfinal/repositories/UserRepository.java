@@ -8,11 +8,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.examenfinal.entities.Users;
 
+import java.util.Optional;
+
 
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
 	public Users findByUsername(String username);
-	
+
 	//BUSCAR POR NOMBRE
 	@Query("select count(u.username) from Users u where u.username =:username")
 	public int buscarUsername(@Param("username") String nombre);

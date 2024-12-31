@@ -59,6 +59,7 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/api/RegistroDeNuevoUsuario").permitAll()
+                .antMatchers("/uploads/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)

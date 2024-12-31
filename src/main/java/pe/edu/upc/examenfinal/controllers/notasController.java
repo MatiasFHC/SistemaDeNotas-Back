@@ -7,6 +7,7 @@ import pe.edu.upc.examenfinal.dtos.borrarNotaDTO;
 import pe.edu.upc.examenfinal.dtos.notasDTO;
 import pe.edu.upc.examenfinal.servicesinterfaces.notasService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -37,6 +38,22 @@ public class notasController {
     public ResponseEntity<borrarNotaDTO> eliminarNota(@RequestParam("id") Long id) {
         borrarNotaDTO deleteNota = NotasService.eliminarNota(id);
         return ResponseEntity.ok(deleteNota);
+    }
+
+    @PutMapping("api/ActualizarTitulo")
+    public ResponseEntity<notasDTO> ActualizarTitulo(
+            @RequestParam Long Id,
+            @RequestParam String titulo) {
+        notasDTO updatedTitulo = NotasService.actualizarTitulo(Id, titulo);
+        return ResponseEntity.ok(updatedTitulo);
+    }
+
+    @PutMapping("api/ActualizarDescripcion")
+    public ResponseEntity<notasDTO> ActualizarDescripcion(
+            @RequestParam Long Id,
+            @RequestParam String descripcion) {
+        notasDTO updatedDescripcion = NotasService.actualizarDescripcipon(Id, descripcion);
+        return ResponseEntity.ok(updatedDescripcion);
     }
 }
 

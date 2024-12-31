@@ -8,6 +8,8 @@ import pe.edu.upc.examenfinal.dtos.UsuarioDTO;
 import pe.edu.upc.examenfinal.entities.Users;
 import pe.edu.upc.examenfinal.repositories.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class usuariosService {
     private final PasswordEncoder passwordEncoder;
@@ -30,4 +32,11 @@ public class usuariosService {
 
         return modelMapper.map(usuarios, UsuarioDTO.class);
     }
+
+    public boolean usernameExists(String username) {
+        // Buscamos un usuario por su nombre de usuario
+        Optional<Users> user = Optional.ofNullable(usuariosRepository.findByUsername(username));
+        return user.isPresent();  // Retorna true si el nombre de usuario ya existe
+    }
+
 }

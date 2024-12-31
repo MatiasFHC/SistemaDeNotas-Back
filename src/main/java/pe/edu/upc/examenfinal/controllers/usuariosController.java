@@ -19,7 +19,16 @@ public class usuariosController {
     }
 
     @PostMapping("api/RegistroDeNuevoUsuario")
-    public ResponseEntity<UsuarioDTO> create(@RequestBody UsuarioDTO usuarioDTO) {
-        return new ResponseEntity<>(UsuariosService.save(usuarioDTO), HttpStatus.CREATED);
+    public ResponseEntity<?> register(@RequestBody UsuarioDTO userDTO) {
+        String username = userDTO.getUsername();
+
+        // Validar si el nombre de usuario ya existe
+        if (UsuariosService.usernameExists(username)) {
+            // Si existe, sugerir un nombre alternativo o devolver error
+            return ResponseEntity.badRequest().body("El nombre de usuario ya está en uso");
+        }
+
+        // Si no existe, proceder con la creación del usuario
+        return new ResponseEntity<>(UsuariosService.save(userDTO), HttpStatus.CREATED);
     }
 }
